@@ -402,34 +402,14 @@
 
         <div class="cta">
             <p style="color: var(--text-muted); margin-bottom: 25px;">Ready to automate your trading execution?</p>
-            <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Select your plan:</p>
+            <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Select your plan (Monthly Subscription):</p>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;">
-                <button onclick="payNow('bots-1', 99)" class="btn btn-primary">1 Bot - $99/mo</button>
-                <button onclick="payNow('bots-2', 158)" class="btn btn-primary">2 Bots - $158/mo</button>
-                <button onclick="payNow('bots-3', 177)" class="btn btn-primary">3 Bots - $177/mo</button>
+                <a href="https://nowpayments.io/payment/?iid=1027641420" target="_blank" class="btn btn-primary">1 Bot - $99/mo</a>
+                <a href="https://nowpayments.io/payment/?iid=2041749035" target="_blank" class="btn btn-primary">2 Bots - $158/mo</a>
+                <a href="https://nowpayments.io/payment/?iid=1006349317" target="_blank" class="btn btn-primary">3 Bots - $177/mo</a>
             </div>
             <a href="bundle.html" class="btn btn-secondary">Or Get the Bundle (Lifetime)</a>
         </div>
-
-        <!-- NowPayments Integration -->
-        <script src="https://nowpayments.io/widget/widget.js"></script>
-        <script>
-            function payNow(product, amount) {
-                // Replace YOUR_API_KEY with your actual NowPayments API key
-                const apiKey = '0XH9F0Y-0JY4DKE-MQ0Q6KK-ZVKPJR8';
-
-                
-                NWWidget.show({
-                    api_key: apiKey,
-                    invoice_id: Date.now().toString(),
-                    order_description: 'TradingBrainz ' + product,
-                    price_amount: amount,
-                    price_currency: 'usd',
-                    success_url: 'https://tradingbrainz.com/success.html',
-                    cancel_url: 'https://tradingbrainz.com/bots.html'
-                });
-            }
-        </script>
 
         <footer>
             <p><a href="index.html">← Back to Home</a></p>

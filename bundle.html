@@ -412,28 +412,9 @@
 
         <div class="cta">
             <p style="color: var(--text-muted); margin-bottom: 25px;">Ready to own the complete system?</p>
-            <button onclick="payNow('bundle', 697)" class="btn btn-primary" style="font-size: 1.1rem; padding: 18px 35px;">Buy Bundle - $697</button>
+            <a href="https://nowpayments.io/payment/?iid=6267063548" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 18px 35px;">Buy Bundle - $697</a>
             <a href="index.html" class="btn btn-secondary">Compare Plans</a>
         </div>
-
-        <!-- NowPayments Integration -->
-        <script src="https://nowpayments.io/widget/widget.js"></script>
-        <script>
-            function payNow(product, amount) {
-                const apiKey = '0XH9F0Y-0JY4DKE-MQ0Q6KK-ZVKPJR8';
-
-                
-                NWWidget.show({
-                    api_key: apiKey,
-                    invoice_id: Date.now().toString(),
-                    order_description: 'TradingBrainz Complete Bundle',
-                    price_amount: amount,
-                    price_currency: 'usd',
-                    success_url: 'https://tradingbrainz.com/success.html',
-                    cancel_url: 'https://tradingbrainz.com/bundle.html'
-                });
-            }
-        </script>
 
         <footer>
             <p><a href="index.html">← Back to Home</a></p>
