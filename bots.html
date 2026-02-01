@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Bots - TradingBrain</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --bg-secondary: #161b22;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-secondary: #238636;
+            --border: #30363d;
+            --orange: #f0883e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active { color: var(--orange); }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .price-hero {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--orange);
+            margin: 20px 0;
+        }
+
+        .price-note {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .feature-item h3 {
+            color: var(--orange);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Prop Firms Section */
+        .firms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .firm-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .firm-card h4 {
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .firm-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* What's Included */
+        .included-list {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .included-list ul {
+            list-style: none;
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .included-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .included-list li::before {
+            content: "✓ ";
+            color: var(--accent-secondary);
+            font-weight: bold;
+        }
+
+        /* Not Included */
+        .not-included {
+            background: rgba(240, 136, 62, 0.1);
+            border: 1px solid var(--orange);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .not-included h3 {
+            color: var(--orange);
+            margin-bottom: 15px;
+        }
+
+        .not-included ul {
+            list-style: none;
+            color: var(--text-muted);
+        }
+
+        .not-included li {
+            padding: 8px 0;
+        }
+
+        .not-included li::before {
+            content: "✗ ";
+            color: var(--orange);
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text);
+            margin-left: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a { color: var(--accent); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .included-list ul { columns: 1; }
+            nav { gap: 15px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="bots.html" class="active">Trading Bots</a>
+        <a href="brain.html">Trading Brain</a>
+        <a href="bundle.html">Complete Bundle</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Trading Bots</h1>
+            <div class="price-hero">$XX/month</div>
+            <p class="price-note">Monthly subscription - cancel anytime</p>
+            <p class="tagline">Automated trade execution with built-in prop firm compliance, risk management, and multi-account coordination.</p>
+        </header>
+
+        <section>
+            <h2>Core Features</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h3>Trading Engine</h3>
+                    <p>Paper and live trading modes. Execute trades automatically based on your signals with configurable risk limits.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Prop Firm Rules Engine</h3>
+                    <p>Automatic compliance for 8 major firms. Drawdown tracking, daily loss limits, consistency rules enforced in real-time.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Multi-Account Management</h3>
+                    <p>Trade multiple accounts simultaneously. Anti-hedging coordination prevents conflicting positions across accounts.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Risk Management</h3>
+                    <p>Position sizing, daily loss limits, consecutive loss stops, and max drawdown protection built in.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Alert System</h3>
+                    <p>Real-time notifications via Discord, Telegram, and email. Drawdown warnings, trade confirmations, compliance alerts.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Trade Dashboard</h3>
+                    <p>Monitor all accounts in one place. P/L tracking, position status, and compliance metrics at a glance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Supported Prop Firms</h2>
+            <div class="firms-grid">
+                <div class="firm-card">
+                    <h4>Apex Trader Funding</h4>
+                    <p>All account sizes supported</p>
+                </div>
+                <div class="firm-card">
+                    <h4>Topstep</h4>
+                    <p>Trading Combine & Funded</p>
+                </div>
+                <div class="firm-card">
+                    <h4>Tradeify</h4>
+                    <p>All evaluation phases</p>
+                </div>
+                <div class="firm-card">
+                    <h4>Take Profit Trader</h4>
+                    <p>PRO & Funded accounts</p>
+                </div>
+                <div class="firm-card">
+                    <h4>TradeDay</h4>
+                    <p>All account types</p>
+                </div>
+                <div class="firm-card">
+                    <h4>Alpha Futures</h4>
+                    <p>Challenge & Funded</p>
+                </div>
+                <div class="firm-card">
+                    <h4>Bulenox</h4>
+                    <p>All account sizes</p>
+                </div>
+                <div class="firm-card">
+                    <h4>Lucid Trading</h4>
+                    <p>Full rule support</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>What's Included</h2>
+            <div class="included-list">
+                <ul>
+                    <li>Trading engine (paper + live)</li>
+                    <li>Tradovate broker integration</li>
+                    <li>NinjaTrader signal support</li>
+                    <li>8 prop firm rule profiles</li>
+                    <li>46+ account configurations</li>
+                    <li>EOD & intraday drawdown tracking</li>
+                    <li>Daily loss limit enforcement</li>
+                    <li>Consistency rule monitoring</li>
+                    <li>Position sizing calculator</li>
+                    <li>Multi-account coordination</li>
+                    <li>Anti-hedging protection</li>
+                    <li>Discord notifications</li>
+                    <li>Telegram notifications</li>
+                    <li>Email alerts</li>
+                    <li>Trade journal</li>
+                    <li>Performance dashboard</li>
+                    <li>Data export (CSV, JSON)</li>
+                    <li>Instrument screener</li>
+                </ul>
+            </div>
+
+            <div class="not-included">
+                <h3>Not Included (Available in Brain or Bundle)</h3>
+                <ul>
+                    <li>AI strategy extraction</li>
+                    <li>Audio/video capture system</li>
+                    <li>QuantConnect backtesting</li>
+                    <li>Setup card generation</li>
+                    <li>Knowledge database</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul style="margin-left: 20px; color: var(--text-muted);">
+                <li>Windows 10/11 (64-bit)</li>
+                <li>Python 3.10+</li>
+                <li>Tradovate account (for live trading)</li>
+                <li>Prop firm account(s) - optional</li>
+            </ul>
+        </section>
+
+        <div class="cta">
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Ready to automate your trading execution?</p>
+            <a href="#" class="btn btn-primary">Subscribe Now</a>
+            <a href="index.html" class="btn btn-secondary">Compare Plans</a>
+        </div>
+
+        <footer>
+            <p><a href="index.html">← Back to Home</a></p>
+            <p style="margin-top: 15px;">Questions? <a href="mailto:your@email.com">Contact us</a></p>
+        </footer>
+    </div>
+</body>
+</html>

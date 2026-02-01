@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Brain - TradingBrain</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --bg-secondary: #161b22;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-secondary: #238636;
+            --border: #30363d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active { color: var(--accent); }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .price-hero {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin: 20px 0;
+        }
+
+        .price-note {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        section {
+            padding: 50px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .feature-item h3 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Workflow */
+        .workflow {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .step-number {
+            background: var(--accent);
+            color: var(--bg);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* What's Included */
+        .included-list {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .included-list ul {
+            list-style: none;
+            columns: 2;
+            column-gap: 40px;
+        }
+
+        .included-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .included-list li::before {
+            content: "✓ ";
+            color: var(--accent-secondary);
+            font-weight: bold;
+        }
+
+        /* Not Included */
+        .not-included {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .not-included h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .not-included ul {
+            list-style: none;
+            color: var(--text-muted);
+        }
+
+        .not-included li {
+            padding: 8px 0;
+        }
+
+        .not-included li::before {
+            content: "✗ ";
+            color: var(--accent);
+        }
+
+        /* Important Note */
+        .note-box {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .note-box h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .note-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text);
+            margin-left: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a { color: var(--accent); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .included-list ul { columns: 1; }
+            nav { gap: 15px; flex-wrap: wrap; }
+            .step { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="bots.html">Trading Bots</a>
+        <a href="brain.html" class="active">Trading Brain</a>
+        <a href="bundle.html">Complete Bundle</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Trading Brain</h1>
+            <div class="price-hero">$XXX</div>
+            <p class="price-note">One-time purchase - lifetime access</p>
+            <p class="tagline">AI-powered learning system. Capture any trading content, extract strategies automatically, and backtest with one click.</p>
+        </header>
+
+        <section>
+            <h2>Core Features</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h3>Audio Capture</h3>
+                    <p>Record system audio from any source. Local Whisper transcription - no cloud fees. Full searchable transcript database.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Screen Capture</h3>
+                    <p>Hotkey-driven screenshots (F8). Windows OCR extracts text automatically. Tag and organize captures by session.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>AI Extraction</h3>
+                    <p>Claude AI analyzes your captures. Extracts indicators, entry/exit rules, risk parameters, and market conditions.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Setup Card Generation</h3>
+                    <p>Structured setup cards created automatically. All conditions, rules, and parameters in one place.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>QuantConnect Integration</h3>
+                    <p>Generate algorithm code from setup cards. One-click cloud backtesting. Performance metrics returned automatically.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Knowledge Database</h3>
+                    <p>Searchable database of everything you've learned. Indicators, concepts, rules - all indexed and queryable.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <div class="workflow">
+                <div class="workflow-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Capture</h4>
+                            <p>Start a session and consume any trading content - courses, videos, webinars, live streams. Audio records automatically. Press F8 for key screenshots.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Process</h4>
+                            <p>End the session and Claude AI takes over. Transcripts are analyzed. Key concepts, indicators, and trading rules are extracted.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h4>Generate</h4>
+                            <p>Setup cards are created with entry conditions, exit rules, and risk parameters. Ready for backtesting or manual trading.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <h4>Backtest</h4>
+                            <p>One click generates QuantConnect algorithm code. Cloud backtest runs automatically. Review performance metrics and refine.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h4>You Train It, You Own It</h4>
+                <p>The Brain starts empty. What you capture and how you train it determines its value. The more quality content you feed it, the better your setup cards become. This is your personalized trading knowledge system.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>What's Included</h2>
+            <div class="included-list">
+                <ul>
+                    <li>Audio capture system</li>
+                    <li>Local Whisper transcription</li>
+                    <li>Hotkey screenshot capture</li>
+                    <li>Windows OCR integration</li>
+                    <li>Session management</li>
+                    <li>Claude AI integration</li>
+                    <li>Strategy extraction engine</li>
+                    <li>Setup card generator</li>
+                    <li>Knowledge database</li>
+                    <li>Full-text search</li>
+                    <li>QuantConnect code generation</li>
+                    <li>Cloud backtesting</li>
+                    <li>PDF playbook import</li>
+                    <li>Video processing</li>
+                    <li>Q&A console</li>
+                    <li>Web dashboards</li>
+                    <li>REST API</li>
+                    <li>Data export</li>
+                </ul>
+            </div>
+
+            <div class="not-included">
+                <h3>Not Included (Available in Bots or Bundle)</h3>
+                <ul>
+                    <li>Live/paper trading execution</li>
+                    <li>Prop firm rules engine</li>
+                    <li>Multi-account management</li>
+                    <li>Real-time alerts</li>
+                    <li>Trade journal</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul style="margin-left: 20px; color: var(--text-muted);">
+                <li>Windows 10/11 (64-bit)</li>
+                <li>Python 3.10+</li>
+                <li>8GB RAM (16GB recommended for local transcription)</li>
+                <li>Anthropic API key (for AI features)</li>
+                <li>QuantConnect account (free tier works)</li>
+            </ul>
+        </section>
+
+        <div class="cta">
+            <p style="color: var(--text-muted); margin-bottom: 25px;">Ready to build your trading knowledge system?</p>
+            <a href="#" class="btn btn-primary">Buy Now</a>
+            <a href="index.html" class="btn btn-secondary">Compare Plans</a>
+        </div>
+
+        <footer>
+            <p><a href="index.html">← Back to Home</a></p>
+            <p style="margin-top: 15px;">Questions? <a href="mailto:your@email.com">Contact us</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -13,6 +13,8 @@
             --accent: #58a6ff;
             --accent-secondary: #238636;
             --border: #30363d;
+            --orange: #f0883e;
+            --purple: #a371f7;
         }
 
         * {
@@ -29,183 +31,72 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        header {
-            text-align: center;
-            padding: 60px 0;
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
             border-bottom: 1px solid var(--border);
         }
 
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             color: #fff;
         }
 
         .tagline {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             color: var(--text-muted);
             margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .badges {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        section {
-            padding: 40px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .feature {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        .feature h3 {
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .feature p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .workflow {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 30px;
-        }
-
-        .workflow-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .step {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .step-number {
-            background: var(--accent);
-            color: var(--bg);
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        .step-content h4 {
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .step-content p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tech {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-
-        .prop-firms {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .firm {
-            background: rgba(35, 134, 54, 0.2);
-            border: 1px solid var(--accent-secondary);
-            color: #3fb950;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        .cta {
-            text-align: center;
-            padding: 60px 0;
-        }
-
-        .cta p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-        }
-
-        .buttons {
+        .hero-cta {
             display: flex;
             gap: 15px;
             justify-content: center;
-            flex-wrap: wrap;
+            margin-top: 30px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
-            border-radius: 6px;
+            padding: 14px 28px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.2s;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .btn:hover {
-            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .btn-primary {
@@ -219,175 +110,295 @@
             color: var(--text);
         }
 
+        section {
+            padding: 60px 0;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Product Cards */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card.bots {
+            border-color: var(--orange);
+        }
+
+        .product-card.brain {
+            border-color: var(--accent);
+        }
+
+        .product-card.bundle {
+            border-color: var(--purple);
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .product-card .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .product-card.bots .price {
+            color: var(--orange);
+        }
+
+        .product-card.brain .price {
+            color: var(--accent);
+        }
+
+        .product-card.bundle .price {
+            color: var(--purple);
+        }
+
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+
+        .product-card p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            min-height: 60px;
+        }
+
+        .product-card ul {
+            text-align: left;
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-card li {
+            padding: 8px 0;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-card li:last-child {
+            border-bottom: none;
+        }
+
+        .product-card li::before {
+            content: "✓ ";
+            color: var(--accent-secondary);
+            font-weight: bold;
+        }
+
+        .product-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Features Overview */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .feature h3 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Important Note */
+        .note-box {
+            background: rgba(240, 136, 62, 0.1);
+            border: 1px solid var(--orange);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .note-box h4 {
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .note-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
         footer {
             text-align: center;
             padding: 40px 0;
+            border-top: 1px solid var(--border);
             color: var(--text-muted);
             font-size: 0.85rem;
         }
 
-        code {
-            background: var(--bg-secondary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.9em;
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
-            header {
-                padding: 40px 0;
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
             }
 
-            .step {
+            .hero-cta {
                 flex-direction: column;
-                gap: 8px;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="bots.html">Trading Bots</a>
+        <a href="brain.html">Trading Brain</a>
+        <a href="bundle.html">Complete Bundle</a>
+    </nav>
+
     <div class="container">
         <header>
-            <h1>🧠 TradingBrain</h1>
-            <p class="tagline">AI-Powered Trading Intelligence System</p>
-            <div class="badges">
-                <span class="badge">Python</span>
-                <span class="badge">Claude AI</span>
-                <span class="badge">QuantConnect</span>
-                <span class="badge">Windows</span>
+            <h1>TradingBrain</h1>
+            <p class="tagline">AI-powered trading intelligence. Capture knowledge, backtest strategies, and execute with prop firm compliance.</p>
+            <div class="hero-cta">
+                <a href="#products" class="btn btn-primary">View Products</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
             </div>
         </header>
 
-        <section>
-            <h2>What is TradingBrain?</h2>
-            <p>TradingBrain automates the entire trading workflow—from learning strategies to live execution. Capture trading education, let AI extract actionable setups, backtest automatically, and trade with built-in prop firm compliance.</p>
-        </section>
+        <section id="products">
+            <h2>Choose Your Package</h2>
+            <div class="products">
+                <div class="product-card bots">
+                    <h3>Trading Bots</h3>
+                    <div class="price">$XX/mo</div>
+                    <p class="price-note">Monthly subscription</p>
+                    <p>Automated execution with prop firm rule compliance and risk management.</p>
+                    <ul>
+                        <li>Paper & live trading engine</li>
+                        <li>8 prop firms supported</li>
+                        <li>Drawdown tracking</li>
+                        <li>Multi-account management</li>
+                        <li>Alerts (Discord, Telegram)</li>
+                    </ul>
+                    <a href="bots.html" class="btn btn-primary">Learn More</a>
+                </div>
 
-        <section>
-            <h2>Features</h2>
-            <div class="features">
-                <div class="feature">
-                    <h3>📹 Capture & Learn</h3>
-                    <p>Record audio and screenshots from any trading course. AI extracts indicators, entry/exit rules, and risk parameters into structured setup cards.</p>
+                <div class="product-card brain">
+                    <h3>Trading Brain</h3>
+                    <div class="price">$XXX</div>
+                    <p class="price-note">One-time purchase</p>
+                    <p>AI-powered learning system that extracts strategies from any content.</p>
+                    <ul>
+                        <li>Audio & screen capture</li>
+                        <li>Claude AI extraction</li>
+                        <li>Setup card generation</li>
+                        <li>QuantConnect backtesting</li>
+                        <li>Knowledge database</li>
+                    </ul>
+                    <a href="brain.html" class="btn btn-primary">Learn More</a>
                 </div>
-                <div class="feature">
-                    <h3>🔬 Auto-Backtest</h3>
-                    <p>Generate QuantConnect algorithms from setup cards with one click. Cloud backtesting returns performance metrics automatically.</p>
+
+                <div class="product-card bundle">
+                    <h3>Complete Bundle</h3>
+                    <div class="price">$XXX</div>
+                    <p class="price-note">One-time purchase</p>
+                    <p>Full system: learn, backtest, and trade. Bare bones - you build it your way.</p>
+                    <ul>
+                        <li>Everything in Bots</li>
+                        <li>Everything in Brain</li>
+                        <li>Lifetime access</li>
+                        <li>No monthly fees</li>
+                        <li>Full customization</li>
+                    </ul>
+                    <a href="bundle.html" class="btn btn-primary">Learn More</a>
                 </div>
-                <div class="feature">
-                    <h3>🏦 Prop Firm Ready</h3>
-                    <p>Built-in rules engine for 8 major prop firms with 46+ account profiles. Automatic drawdown tracking and compliance checks.</p>
-                </div>
-                <div class="feature">
-                    <h3>⚡ Smart Execution</h3>
-                    <p>Paper and live trading with Tradovate integration. Multi-account position management with anti-hedging coordination.</p>
-                </div>
-                <div class="feature">
-                    <h3>📊 Market Intelligence</h3>
-                    <p>Forex Factory calendar integration, COT data, IG sentiment. Automatic news blackout detection before high-impact events.</p>
-                </div>
-                <div class="feature">
-                    <h3>🔔 Alerts & Journal</h3>
-                    <p>Discord, Telegram, and email notifications. Built-in trade journal with pre/post-trade reflection prompts.</p>
-                </div>
+            </div>
+
+            <div class="note-box">
+                <h4>Important: You Build Your Edge</h4>
+                <p>TradingBrain provides the tools - you provide the strategy. The system comes bare bones. It's up to you to train the AI, design your setups, and build your trading approach. This is not a "get rich quick" solution.</p>
             </div>
         </section>
 
-        <section>
-            <h2>Supported Prop Firms</h2>
-            <p>Automatic rule enforcement and drawdown tracking for:</p>
-            <div class="prop-firms">
-                <span class="firm">Apex Trader Funding</span>
-                <span class="firm">Topstep</span>
-                <span class="firm">Tradeify</span>
-                <span class="firm">Take Profit Trader</span>
-                <span class="firm">TradeDay</span>
-                <span class="firm">Alpha Futures</span>
-                <span class="firm">Bulenox</span>
-                <span class="firm">Lucid Trading</span>
-            </div>
-        </section>
-
-        <section>
-            <h2>How It Works</h2>
-            <div class="workflow">
-                <div class="workflow-steps">
-                    <div class="step">
-                        <span class="step-number">1</span>
-                        <div class="step-content">
-                            <h4>Capture</h4>
-                            <p>Run <code>start_capture.bat</code> and watch any trading content. Press F8 for screenshots, audio records automatically.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <span class="step-number">2</span>
-                        <div class="step-content">
-                            <h4>Extract</h4>
-                            <p>End session and Claude AI processes everything—extracting indicators, conditions, and creating setup cards.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <span class="step-number">3</span>
-                        <div class="step-content">
-                            <h4>Backtest</h4>
-                            <p>One click generates QuantConnect algorithm code. Cloud backtest runs and returns performance stats.</p>
-                        </div>
-                    </div>
-                    <div class="step">
-                        <span class="step-number">4</span>
-                        <div class="step-content">
-                            <h4>Trade</h4>
-                            <p>Paper trade to validate, then go live. Prop firm rules enforced automatically. Dashboard tracks everything.</p>
-                        </div>
-                    </div>
+        <section id="features">
+            <h2>Platform Features</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Capture & Learn</h3>
+                    <p>Record audio and screenshots from courses, videos, or live trading. AI extracts indicators, rules, and setups automatically.</p>
+                </div>
+                <div class="feature">
+                    <h3>Auto-Backtest</h3>
+                    <p>Generate QuantConnect algorithms from setup cards. Cloud backtesting returns performance metrics with one click.</p>
+                </div>
+                <div class="feature">
+                    <h3>Prop Firm Ready</h3>
+                    <p>Built-in rules for Apex, Topstep, Tradeify, and 5 more firms. Automatic drawdown and compliance tracking.</p>
+                </div>
+                <div class="feature">
+                    <h3>Smart Execution</h3>
+                    <p>Paper and live trading via Tradovate. Position sizing, risk limits, and multi-account coordination built in.</p>
+                </div>
+                <div class="feature">
+                    <h3>Market Intelligence</h3>
+                    <p>Economic calendar, COT data, and sentiment feeds. News blackout detection before high-impact events.</p>
+                </div>
+                <div class="feature">
+                    <h3>Trade Journal</h3>
+                    <p>Built-in journaling with pre/post-trade reflection. Track performance by symbol, time, and strategy.</p>
                 </div>
             </div>
         </section>
-
-        <section>
-            <h2>Tech Stack</h2>
-            <div class="tech-stack">
-                <span class="tech">Python 3.10+</span>
-                <span class="tech">Claude AI (Anthropic)</span>
-                <span class="tech">QuantConnect</span>
-                <span class="tech">Tradovate API</span>
-                <span class="tech">NinjaTrader</span>
-                <span class="tech">Flask</span>
-                <span class="tech">SQLite</span>
-                <span class="tech">Whisper (Local)</span>
-            </div>
-        </section>
-
-        <section>
-            <h2>Requirements</h2>
-            <ul style="margin-left: 20px; color: var(--text-muted);">
-                <li>Windows 10/11 (64-bit)</li>
-                <li>Python 3.10+</li>
-                <li>8GB RAM (16GB recommended)</li>
-                <li>Anthropic API key (for AI features)</li>
-                <li>QuantConnect account (for backtesting)</li>
-            </ul>
-        </section>
-
-        <div class="cta">
-            <p>Ready to automate your trading workflow?</p>
-            <div class="buttons">
-                <a href="https://github.com/yourusername/tradingbrain" class="btn btn-primary">
-                    View on GitHub
-                </a>
-                <a href="https://github.com/yourusername/tradingbrain#quick-start" class="btn btn-secondary">
-                    Quick Start Guide
-                </a>
-            </div>
-        </div>
 
         <footer>
-            <p>Built for traders who want to learn faster and trade smarter.</p>
-            <p style="margin-top: 10px;">MIT License</p>
+            <p>TradingBrain - Built for traders who want to learn faster and trade smarter.</p>
+            <p style="margin-top: 10px;"><a href="mailto:your@email.com">Contact</a></p>
         </footer>
     </div>
 </body>
