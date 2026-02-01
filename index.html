@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradingBrain - AI-Powered Trading Intelligence</title>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --bg-secondary: #161b22;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-secondary: #238636;
+            --border: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        section {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .feature h3 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .workflow {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .step-number {
+            background: var(--accent);
+            color: var(--bg);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .prop-firms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .firm {
+            background: rgba(35, 134, 54, 0.2);
+            border: 1px solid var(--accent-secondary);
+            color: #3fb950;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .cta p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: var(--accent-secondary);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 40px 0;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 TradingBrain</h1>
+            <p class="tagline">AI-Powered Trading Intelligence System</p>
+            <div class="badges">
+                <span class="badge">Python</span>
+                <span class="badge">Claude AI</span>
+                <span class="badge">QuantConnect</span>
+                <span class="badge">Windows</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>What is TradingBrain?</h2>
+            <p>TradingBrain automates the entire trading workflow—from learning strategies to live execution. Capture trading education, let AI extract actionable setups, backtest automatically, and trade with built-in prop firm compliance.</p>
+        </section>
+
+        <section>
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>📹 Capture & Learn</h3>
+                    <p>Record audio and screenshots from any trading course. AI extracts indicators, entry/exit rules, and risk parameters into structured setup cards.</p>
+                </div>
+                <div class="feature">
+                    <h3>🔬 Auto-Backtest</h3>
+                    <p>Generate QuantConnect algorithms from setup cards with one click. Cloud backtesting returns performance metrics automatically.</p>
+                </div>
+                <div class="feature">
+                    <h3>🏦 Prop Firm Ready</h3>
+                    <p>Built-in rules engine for 8 major prop firms with 46+ account profiles. Automatic drawdown tracking and compliance checks.</p>
+                </div>
+                <div class="feature">
+                    <h3>⚡ Smart Execution</h3>
+                    <p>Paper and live trading with Tradovate integration. Multi-account position management with anti-hedging coordination.</p>
+                </div>
+                <div class="feature">
+                    <h3>📊 Market Intelligence</h3>
+                    <p>Forex Factory calendar integration, COT data, IG sentiment. Automatic news blackout detection before high-impact events.</p>
+                </div>
+                <div class="feature">
+                    <h3>🔔 Alerts & Journal</h3>
+                    <p>Discord, Telegram, and email notifications. Built-in trade journal with pre/post-trade reflection prompts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Supported Prop Firms</h2>
+            <p>Automatic rule enforcement and drawdown tracking for:</p>
+            <div class="prop-firms">
+                <span class="firm">Apex Trader Funding</span>
+                <span class="firm">Topstep</span>
+                <span class="firm">Tradeify</span>
+                <span class="firm">Take Profit Trader</span>
+                <span class="firm">TradeDay</span>
+                <span class="firm">Alpha Futures</span>
+                <span class="firm">Bulenox</span>
+                <span class="firm">Lucid Trading</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <div class="workflow">
+                <div class="workflow-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Capture</h4>
+                            <p>Run <code>start_capture.bat</code> and watch any trading content. Press F8 for screenshots, audio records automatically.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Extract</h4>
+                            <p>End session and Claude AI processes everything—extracting indicators, conditions, and creating setup cards.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h4>Backtest</h4>
+                            <p>One click generates QuantConnect algorithm code. Cloud backtest runs and returns performance stats.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <h4>Trade</h4>
+                            <p>Paper trade to validate, then go live. Prop firm rules enforced automatically. Dashboard tracks everything.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Tech Stack</h2>
+            <div class="tech-stack">
+                <span class="tech">Python 3.10+</span>
+                <span class="tech">Claude AI (Anthropic)</span>
+                <span class="tech">QuantConnect</span>
+                <span class="tech">Tradovate API</span>
+                <span class="tech">NinjaTrader</span>
+                <span class="tech">Flask</span>
+                <span class="tech">SQLite</span>
+                <span class="tech">Whisper (Local)</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Requirements</h2>
+            <ul style="margin-left: 20px; color: var(--text-muted);">
+                <li>Windows 10/11 (64-bit)</li>
+                <li>Python 3.10+</li>
+                <li>8GB RAM (16GB recommended)</li>
+                <li>Anthropic API key (for AI features)</li>
+                <li>QuantConnect account (for backtesting)</li>
+            </ul>
+        </section>
+
+        <div class="cta">
+            <p>Ready to automate your trading workflow?</p>
+            <div class="buttons">
+                <a href="https://github.com/yourusername/tradingbrain" class="btn btn-primary">
+                    View on GitHub
+                </a>
+                <a href="https://github.com/yourusername/tradingbrain#quick-start" class="btn btn-secondary">
+                    Quick Start Guide
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built for traders who want to learn faster and trade smarter.</p>
+            <p style="margin-top: 10px;">MIT License</p>
+        </footer>
+    </div>
+</body>
+</html>
