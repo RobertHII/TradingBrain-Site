@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processing - TradingBrainz</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #16161f;
+            --text: #e4e4e7;
+            --text-muted: #a1a1aa;
+            --accent: #3b82f6;
+            --warning: #f59e0b;
+            --border: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .status-container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .status-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--warning), #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .status-icon svg {
+            width: 60px;
+            height: 60px;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a8a8a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            color: var(--warning);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .confirmation-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .time-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .time-item .crypto {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .time-item .duration {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .progress-bar {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--warning), #ea580c);
+            border-radius: 10px;
+            width: 30%;
+            animation: progress 3s ease-in-out infinite;
+        }
+
+        @keyframes progress {
+            0% { width: 20%; }
+            50% { width: 70%; }
+            100% { width: 20%; }
+        }
+
+        .note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .note strong {
+            color: var(--accent);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            .status-icon { width: 80px; height: 80px; }
+            .status-icon svg { width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Trading<span>Brainz</span></a>
+    </header>
+
+    <main class="main-content">
+        <div class="status-container">
+            <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+            </div>
+
+            <h1>Payment Processing</h1>
+            <p class="subtitle">Your cryptocurrency payment has been detected and is being confirmed on the blockchain.</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+
+            <div class="info-box">
+                <h3>Typical Confirmation Times</h3>
+                <div class="confirmation-times">
+                    <div class="time-item">
+                        <div class="crypto">BTC</div>
+                        <div class="duration">10-60 min</div>
+                    </div>
+                    <div class="time-item">
+                        <div class="crypto">ETH</div>
+                        <div class="duration">2-5 min</div>
+                    </div>
+                    <div class="time-item">
+                        <div class="crypto">BNB</div>
+                        <div class="duration">1-3 min</div>
+                    </div>
+                    <div class="time-item">
+                        <div class="crypto">XRP</div>
+                        <div class="duration">&lt;1 min</div>
+                    </div>
+                    <div class="time-item">
+                        <div class="crypto">USDT/USDC</div>
+                        <div class="duration">1-5 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>What happens next?</strong><br>
+                Once your payment is confirmed, you'll receive an email with your license key and download instructions. You can close this page - we'll email you when everything is ready.
+            </div>
+
+            <div class="cta-buttons">
+                <a href="index.html" class="btn btn-secondary">Return to Home</a>
+                <a href="mailto:support@tradingbrainz.com" class="btn btn-secondary">Contact Support</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Questions? Contact us at <a href="mailto:support@tradingbrainz.com">support@tradingbrainz.com</a></p>
+        <p style="margin-top: 0.5rem;">&copy; 2025 TradingBrainz. All rights reserved.</p>
+    </footer>
+</body>
+</html>

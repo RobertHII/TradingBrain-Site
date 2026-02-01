@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Failed - TradingBrainz</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #16161f;
+            --text: #e4e4e7;
+            --text-muted: #a1a1aa;
+            --accent: #3b82f6;
+            --danger: #ef4444;
+            --border: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .status-container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .status-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        .status-icon svg {
+            width: 60px;
+            height: 60px;
+            stroke: white;
+            stroke-width: 3;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a8a8a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            color: var(--danger);
+            margin-bottom: 1rem;
+        }
+
+        .reasons-list {
+            list-style: none;
+        }
+
+        .reasons-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .reasons-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reasons-list li::before {
+            content: "!";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+            border-radius: 50%;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .help-box {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .help-box h4 {
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .help-box p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .help-box a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .help-box a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #2563eb);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            .status-icon { width: 80px; height: 80px; }
+            .status-icon svg { width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Trading<span>Brainz</span></a>
+    </header>
+
+    <main class="main-content">
+        <div class="status-container">
+            <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <h1>Payment Failed</h1>
+            <p class="subtitle">We couldn't process your payment. Don't worry - no funds have been taken from your account.</p>
+
+            <div class="info-box">
+                <h3>This might have happened because:</h3>
+                <ul class="reasons-list">
+                    <li>The payment window timed out (crypto not sent within 30 minutes)</li>
+                    <li>Insufficient amount was sent to the payment address</li>
+                    <li>The transaction was sent to the wrong address</li>
+                    <li>Network congestion caused delays beyond the payment window</li>
+                    <li>The cryptocurrency network rejected the transaction</li>
+                </ul>
+            </div>
+
+            <div class="help-box">
+                <h4>Already sent payment?</h4>
+                <p>
+                    If you've already sent cryptocurrency and are seeing this error, please don't panic.
+                    Contact our support team at <a href="mailto:support@tradingbrainz.com">support@tradingbrainz.com</a>
+                    with your transaction hash (TXID) and we'll investigate and process your order manually if the payment was received.
+                </p>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="index.html#pricing" class="btn btn-primary">Try Again</a>
+                <a href="mailto:support@tradingbrainz.com" class="btn btn-secondary">Contact Support</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Questions? Contact us at <a href="mailto:support@tradingbrainz.com">support@tradingbrainz.com</a></p>
+        <p style="margin-top: 0.5rem;">&copy; 2025 TradingBrainz. All rights reserved.</p>
+    </footer>
+</body>
+</html>

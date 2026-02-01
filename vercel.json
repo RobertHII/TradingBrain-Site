@@ -1,0 +1,36 @@
+{
+  "rewrites": [
+    {
+      "source": "/webhook/nowpayments",
+      "destination": "/api/webhook"
+    },
+    {
+      "source": "/payment/pending",
+      "destination": "/payment-pending.html"
+    },
+    {
+      "source": "/payment/failed",
+      "destination": "/payment-failed.html"
+    },
+    {
+      "source": "/payment/expired",
+      "destination": "/payment-expired.html"
+    },
+    {
+      "source": "/payment/success",
+      "destination": "/success.html"
+    },
+    {
+      "source": "/api/subscribe",
+      "destination": "/api/subscribe"
+    }
+  ],
+  "functions": {
+    "api/webhook.py": {
+      "runtime": "python3.9"
+    },
+    "api/subscribe.py": {
+      "runtime": "python3.9"
+    }
+  }
+}

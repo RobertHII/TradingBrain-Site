@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Expired - TradingBrainz</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #16161f;
+            --text: #e4e4e7;
+            --text-muted: #a1a1aa;
+            --accent: #3b82f6;
+            --warning: #f59e0b;
+            --border: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .status-container {
+            text-align: center;
+            max-width: 550px;
+        }
+
+        .status-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+
+        .status-icon svg {
+            width: 60px;
+            height: 60px;
+            stroke: white;
+            stroke-width: 2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff 0%, #a8a8a8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            color: var(--warning);
+            margin-bottom: 1rem;
+        }
+
+        .info-box p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .info-box ul {
+            margin: 1rem 0 0 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .info-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .note a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .note a:hover {
+            text-decoration: underline;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #2563eb);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            .status-icon { width: 80px; height: 80px; }
+            .status-icon svg { width: 40px; height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Trading<span>Brainz</span></a>
+    </header>
+
+    <main class="main-content">
+        <div class="status-container">
+            <div class="status-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                    <line x1="4" y1="4" x2="20" y2="20" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <h1>Payment Expired</h1>
+            <p class="subtitle">The payment window has closed. Cryptocurrency prices fluctuate, so payment addresses expire after 30 minutes for your protection.</p>
+
+            <div class="info-box">
+                <h3>What happened?</h3>
+                <p>
+                    When you start a crypto payment, we lock in the exchange rate and generate a unique payment address.
+                    This address and rate are valid for 30 minutes. If no payment is received in that time,
+                    the order expires to prevent issues with price changes.
+                </p>
+                <ul>
+                    <li>No funds were charged</li>
+                    <li>You can start a new order anytime</li>
+                    <li>The new order will use current exchange rates</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>Did you send payment before expiration?</strong><br>
+                If you sent cryptocurrency but the order expired, don't worry. Contact us at
+                <a href="mailto:support@tradingbrainz.com">support@tradingbrainz.com</a>
+                with your transaction ID and we'll resolve it.
+            </div>
+
+            <div class="cta-buttons">
+                <a href="index.html#pricing" class="btn btn-primary">Start New Order</a>
+                <a href="index.html" class="btn btn-secondary">Return to Home</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Questions? Contact us at <a href="mailto:support@tradingbrainz.com">support@tradingbrainz.com</a></p>
+        <p style="margin-top: 0.5rem;">&copy; 2025 TradingBrainz. All rights reserved.</p>
+    </footer>
+</body>
+</html>

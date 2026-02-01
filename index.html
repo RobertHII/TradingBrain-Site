@@ -688,13 +688,75 @@
             }
         }
 
+        /* Mobile Navigation */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
 
+            .nav-toggle {
+                display: flex;
+            }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .nav-cta {
+                text-align: center;
+                margin-top: 10px;
             }
 
             .workflow-grid, .features-grid, .pricing-grid, .disclaimer-grid {
@@ -727,7 +789,12 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">Trading<span>Brainz</span></a>
-            <div class="nav-links">
+            <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="nav-links">
                 <a href="#features">Features</a>
                 <a href="#pricing">Pricing</a>
                 <a href="about.html">About</a>
@@ -751,11 +818,11 @@
 
         <div class="stats-bar">
             <div class="stat">
-                <div class="stat-number">8</div>
+                <div class="stat-number">14</div>
                 <div class="stat-label">Prop Firms Supported</div>
             </div>
             <div class="stat">
-                <div class="stat-number">46+</div>
+                <div class="stat-number">50+</div>
                 <div class="stat-label">Account Profiles</div>
             </div>
             <div class="stat">
@@ -930,9 +997,10 @@
             <div class="section-header">
                 <span class="section-label">Compatibility</span>
                 <h2>Supported Prop Firms</h2>
-                <p class="section-subtitle">Automatic rule enforcement and compliance tracking for major prop firms.</p>
+                <p class="section-subtitle">Automatic rule enforcement and compliance tracking for futures and crypto prop firms.</p>
             </div>
 
+            <h3 style="color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px;">Futures Prop Firms</h3>
             <div class="firms-grid">
                 <div class="firm-card">
                     <h4>Apex Trader Funding</h4>
@@ -965,6 +1033,34 @@
                 <div class="firm-card">
                     <h4>Lucid Trading</h4>
                     <p>Full rule support</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--text-muted); font-size: 1rem; margin: 40px 0 20px; text-transform: uppercase; letter-spacing: 1px;">Crypto Prop Firms</h3>
+            <div class="firms-grid">
+                <div class="firm-card" style="border-color: var(--purple);">
+                    <h4>HyroTrader</h4>
+                    <p>Bybit/CLEO - 5-min SL</p>
+                </div>
+                <div class="firm-card" style="border-color: var(--purple);">
+                    <h4>CFT</h4>
+                    <p>Crypto Fund Trader</p>
+                </div>
+                <div class="firm-card" style="border-color: var(--purple);">
+                    <h4>FTMO Crypto</h4>
+                    <p>Crypto division</p>
+                </div>
+                <div class="firm-card" style="border-color: var(--purple);">
+                    <h4>FundedNext</h4>
+                    <p>Crypto challenges</p>
+                </div>
+                <div class="firm-card" style="border-color: var(--purple);">
+                    <h4>BrightFunded</h4>
+                    <p>Crypto accounts</p>
+                </div>
+                <div class="firm-card" style="border-color: var(--purple);">
+                    <h4>WarBuxBTC</h4>
+                    <p>Bitcoin-focused</p>
                 </div>
             </div>
         </div>
@@ -1080,6 +1176,243 @@
             <p>Trading involves risk. Past performance does not guarantee future results.</p>
         </div>
     </footer>
+    <!-- Email Capture Modal -->
+    <div id="promo-modal" class="promo-modal">
+        <div class="promo-overlay" onclick="closePromo()"></div>
+        <div class="promo-content">
+            <button class="promo-close" onclick="closePromo()">&times;</button>
+            <div class="promo-icon">15% OFF</div>
+            <h3>Get 15% Off Your First Purchase</h3>
+            <p>Join our email list and receive an exclusive discount code instantly.</p>
+            <form id="promo-form" onsubmit="submitPromo(event)">
+                <input type="email" id="promo-email" placeholder="Enter your email" required>
+                <button type="submit" class="btn btn-primary" id="promo-submit">Get My Discount</button>
+            </form>
+            <p class="promo-note">No spam, ever. Unsubscribe anytime.</p>
+            <div id="promo-success" class="promo-success hidden">
+                <div class="success-icon">&#10003;</div>
+                <h4>Your discount code:</h4>
+                <div class="discount-code" id="discount-code"></div>
+                <p>Code copied! Use at checkout for 15% off.</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .promo-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .promo-modal.show { display: flex; }
+        .promo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(4px);
+        }
+        .promo-content {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .promo-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .promo-close:hover { color: #fff; }
+        .promo-icon {
+            background: var(--gradient-1);
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 800;
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .promo-content h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .promo-content > p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+        #promo-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        #promo-form input {
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 1rem;
+        }
+        #promo-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        #promo-form button {
+            padding: 14px;
+            width: 100%;
+            justify-content: center;
+        }
+        .promo-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 15px;
+        }
+        .promo-success {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .promo-success .success-icon {
+            color: var(--green);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .promo-success h4 {
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .discount-code {
+            background: var(--bg);
+            border: 2px dashed var(--green);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .promo-success p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .hidden { display: none !important; }
+    </style>
+
+    <script>
+        // Promo modal logic
+        let promoShown = localStorage.getItem('promoShown');
+
+        function showPromo() {
+            if (!promoShown) {
+                document.getElementById('promo-modal').classList.add('show');
+            }
+        }
+
+        function closePromo() {
+            document.getElementById('promo-modal').classList.remove('show');
+            localStorage.setItem('promoShown', 'true');
+        }
+
+        async function submitPromo(e) {
+            e.preventDefault();
+            const email = document.getElementById('promo-email').value;
+            const btn = document.getElementById('promo-submit');
+
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (data.code) {
+                    document.getElementById('promo-form').classList.add('hidden');
+                    document.querySelector('.promo-content > p').classList.add('hidden');
+                    document.getElementById('discount-code').textContent = data.code;
+                    document.getElementById('promo-success').classList.remove('hidden');
+
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(data.code);
+                    localStorage.setItem('promoShown', 'true');
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = 'Get My Discount';
+                    alert(data.error || 'Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                // Fallback: generate client-side code if API fails
+                const code = 'WELCOME15-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+                document.getElementById('promo-form').classList.add('hidden');
+                document.querySelector('.promo-content > p').classList.add('hidden');
+                document.getElementById('discount-code').textContent = code;
+                document.getElementById('promo-success').classList.remove('hidden');
+                navigator.clipboard.writeText(code);
+                localStorage.setItem('promoShown', 'true');
+            }
+        }
+
+        // Mobile navigation toggle
+        function toggleNav() {
+            const toggle = document.getElementById('nav-toggle');
+            const links = document.getElementById('nav-links');
+            toggle.classList.toggle('active');
+            links.classList.toggle('show');
+        }
+
+        // Close mobile nav when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-toggle').classList.remove('active');
+                document.getElementById('nav-links').classList.remove('show');
+            });
+        });
+
+        // Show promo after 8 seconds or 50% scroll
+        setTimeout(showPromo, 8000);
+
+        let scrollTriggered = false;
+        window.addEventListener('scroll', () => {
+            if (!scrollTriggered && window.scrollY > document.body.scrollHeight * 0.3) {
+                scrollTriggered = true;
+                showPromo();
+            }
+        });
+    </script>
     <script src="chatbot.js"></script>
 </body>
 </html>
