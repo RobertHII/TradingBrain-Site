@@ -416,13 +416,9 @@
         <script>
             function payNow(product, amount) {
                 // Replace YOUR_API_KEY with your actual NowPayments API key
-                const apiKey = 'YOUR_NOWPAYMENTS_API_KEY';
+                const apiKey = '0XH9F0Y-0JY4DKE-MQ0Q6KK-ZVKPJR8';
 
-                if (apiKey === 'YOUR_NOWPAYMENTS_API_KEY') {
-                    alert('Payment system is being configured. Please contact support@tradingbrainz.com to complete your purchase.');
-                    return;
-                }
-
+                
                 NWWidget.show({
                     api_key: apiKey,
                     invoice_id: Date.now().toString(),
