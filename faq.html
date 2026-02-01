@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently asked questions about TradingBrain - system requirements, pricing, prop firm support, and more.">
+    <title>FAQ - TradingBrain</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #16161f;
+            --text: #e4e4e7;
+            --text-muted: #a1a1aa;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --green: #22c55e;
+            --orange: #f59e0b;
+            --purple: #8b5cf6;
+            --border: #27272a;
+            --gradient-1: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 15, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: #fff !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .hero {
+            padding: 160px 20px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        .faq-category {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .faq-item.open .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px 20px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            display: none;
+        }
+
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        .faq-answer ul {
+            margin: 15px 0 15px 20px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+
+        .faq-answer strong {
+            color: var(--text);
+        }
+
+        .faq-answer code {
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .contact-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .contact-box h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Trading<span>Brain</span></a>
+            <div class="nav-links">
+                <a href="index.html#features">Features</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="about.html">About</a>
+                <a href="faq.html" class="active">FAQ</a>
+                <a href="index.html#pricing" class="nav-cta">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Frequently Asked Questions</h1>
+        <p>Everything you need to know about TradingBrain</p>
+    </section>
+
+    <section>
+        <div class="container">
+
+            <!-- Getting Started -->
+            <div class="faq-category">
+                <h2 class="category-title">Getting Started</h2>
+
+                <div class="faq-item open">
+                    <div class="faq-question">What do I need to run TradingBrain?</div>
+                    <div class="faq-answer">
+                        <strong>System Requirements:</strong>
+                        <ul>
+                            <li>Windows 10/11 (64-bit)</li>
+                            <li>Python 3.10 or higher</li>
+                            <li>8GB RAM minimum (16GB recommended for local transcription)</li>
+                            <li>5GB free disk space</li>
+                        </ul>
+                        <strong>Required API Keys (you provide):</strong>
+                        <ul>
+                            <li><strong>Anthropic</strong> - For Claude AI strategy extraction</li>
+                            <li><strong>QuantConnect</strong> - For backtesting (free tier available)</li>
+                            <li><strong>Tradovate</strong> - For live bot trading (if using bots)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How much do the API keys cost?</div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>Anthropic (Claude)</strong> - Usage-based pricing. Typical usage for strategy extraction is $5-20/month depending on how much content you process.</li>
+                            <li><strong>QuantConnect</strong> - Free tier includes backtesting. Paid tiers ($8-24/mo) for more backtests and features.</li>
+                            <li><strong>Tradovate</strong> - Free API access with a funded account. Standard broker commissions apply to trades.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I use a different AI besides Claude?</div>
+                    <div class="faq-answer">
+                        The system is natively built and optimized for Anthropic's Claude. At purchase, you can specify if you prefer a different AI provider, and we'll configure the system accordingly. However, Claude provides the best results for strategy extraction due to its strong reasoning capabilities.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is TradingBrain Mac or Linux compatible?</div>
+                    <div class="faq-answer">
+                        Currently, TradingBrain is Windows-only. The capture system uses Windows-specific APIs for audio recording and OCR. Mac/Linux support may be added in future updates, but there's no timeline for this.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products & Pricing -->
+            <div class="faq-category">
+                <h2 class="category-title">Products & Pricing</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">What's the difference between Brain and Bots?</div>
+                    <div class="faq-answer">
+                        <strong>Trading Brain ($497 one-time)</strong> is the learning and strategy development system:
+                        <ul>
+                            <li>Captures audio/video from trading education</li>
+                            <li>AI extracts trading rules and strategies</li>
+                            <li>Generates backtestable algorithms</li>
+                            <li>Builds your knowledge database</li>
+                        </ul>
+                        <strong>Trading Bots ($59-99/month per bot)</strong> handle execution:
+                        <ul>
+                            <li>Paper and live trade execution</li>
+                            <li>Prop firm rule compliance</li>
+                            <li>Multi-account management</li>
+                            <li>Real-time alerts and monitoring</li>
+                        </ul>
+                        You can use Brain without Bots (manual trading), but Bots work best with strategies developed in Brain.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How does the bot pricing work?</div>
+                    <div class="faq-answer">
+                        Each bot manages one trading account. Volume discounts apply:
+                        <ul>
+                            <li><strong>1 Bot:</strong> $99/month</li>
+                            <li><strong>2 Bots:</strong> $79/month each ($158 total)</li>
+                            <li><strong>3+ Bots:</strong> $59/month each</li>
+                        </ul>
+                        Example: If you have 5 prop firm accounts, you'd need 5 bots at $59 each = $295/month.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What's included in the Bundle?</div>
+                    <div class="faq-answer">
+                        The Complete Bundle ($697 one-time) includes:
+                        <ul>
+                            <li>Full Trading Brain (lifetime)</li>
+                            <li>2 Trading Bots (lifetime - no monthly fees)</li>
+                            <li>All future updates</li>
+                        </ul>
+                        <strong>Important:</strong> You must select and activate your 2 bots within 7 days of purchase. Bots not activated within this window are forfeited. This cannot be extended.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I add more bots after buying the Bundle?</div>
+                    <div class="faq-answer">
+                        Yes. The Bundle includes 2 lifetime bots. If you need additional bots beyond those 2, you can subscribe to more at the standard monthly rates ($59-99/month depending on total count).
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer refunds?</div>
+                    <div class="faq-answer">
+                        Due to the digital nature of the product and the immediate access provided, all sales are final. We encourage you to read all documentation and FAQ before purchasing. If you have questions about whether TradingBrain is right for your use case, contact us before buying.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prop Firms -->
+            <div class="faq-category">
+                <h2 class="category-title">Prop Firm Support</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">Which prop firms are supported?</div>
+                    <div class="faq-answer">
+                        TradingBrain supports 8 major prop firms with 46+ account profiles:
+                        <ul>
+                            <li>Apex Trader Funding</li>
+                            <li>Topstep</li>
+                            <li>Tradeify</li>
+                            <li>Take Profit Trader</li>
+                            <li>TradeDay</li>
+                            <li>Alpha Futures</li>
+                            <li>Bulenox</li>
+                            <li>Lucid Trading</li>
+                        </ul>
+                        Each firm has specific rule profiles for different account sizes and phases (evaluation, funded, etc.).
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What rules does the bot enforce?</div>
+                    <div class="faq-answer">
+                        The bot automatically enforces:
+                        <ul>
+                            <li><strong>Drawdown limits</strong> - EOD and intraday trailing drawdown</li>
+                            <li><strong>Daily loss limits</strong> - Stops trading when limit approached</li>
+                            <li><strong>Position sizing</strong> - Max contracts per account type</li>
+                            <li><strong>Trading hours</strong> - Firm-specific allowed trading windows</li>
+                            <li><strong>Consistency rules</strong> - Where applicable</li>
+                            <li><strong>News blackouts</strong> - Optional avoidance of high-impact events</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can you add support for [other prop firm]?</div>
+                    <div class="faq-answer">
+                        Possibly. New prop firms are added based on demand and broker compatibility. The firm must use Tradovate or have an API we can integrate with. Contact us with your request and we'll evaluate adding support.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical -->
+            <div class="faq-category">
+                <h2 class="category-title">Technical Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is my data stored locally or in the cloud?</div>
+                    <div class="faq-answer">
+                        All your data is stored locally on your machine:
+                        <ul>
+                            <li>Transcripts and captures → SQLite database on your PC</li>
+                            <li>Trading strategies and setup cards → Local files</li>
+                            <li>Trade history and journal → Local JSON files</li>
+                        </ul>
+                        The only cloud interactions are API calls to Anthropic (AI processing), QuantConnect (backtesting), and your broker (trade execution). We don't have access to your strategies or trading data.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Does TradingBrain work with NinjaTrader?</div>
+                    <div class="faq-answer">
+                        Yes. TradingBrain includes NinjaTrader integration for receiving signals. You can use NT8 as your charting platform and signal source, with TradingBrain handling the execution through Tradovate. This is useful for traders who have existing NinjaTrader strategies.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What markets can I trade?</div>
+                    <div class="faq-answer">
+                        TradingBrain is designed for futures trading through Tradovate. Commonly traded instruments include:
+                        <ul>
+                            <li>ES (E-mini S&P 500)</li>
+                            <li>NQ (E-mini Nasdaq)</li>
+                            <li>CL (Crude Oil)</li>
+                            <li>GC (Gold)</li>
+                            <li>And other Tradovate-supported futures</li>
+                        </ul>
+                        Stock, forex, and crypto trading are not currently supported.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How does the AI strategy extraction work?</div>
+                    <div class="faq-answer">
+                        When you end a capture session:
+                        <ol>
+                            <li>Audio is transcribed locally using Whisper</li>
+                            <li>Screenshots are processed with OCR</li>
+                            <li>All content is sent to Claude AI for analysis</li>
+                            <li>Claude extracts indicators, conditions, entry/exit rules, and risk parameters</li>
+                            <li>Results are formatted into structured "setup cards"</li>
+                            <li>Setup cards can be converted to QuantConnect algorithm code</li>
+                        </ol>
+                        The quality of extraction depends on the clarity of the source material. Well-structured courses with explicit rules produce better results than vague or ambiguous content.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage -->
+            <div class="faq-category">
+                <h2 class="category-title">Usage Questions</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is this a signals service or copy trading?</div>
+                    <div class="faq-answer">
+                        <strong>No.</strong> TradingBrain is a toolkit, not a signals service. We don't provide:
+                        <ul>
+                            <li>Trading signals or alerts</li>
+                            <li>Pre-built strategies</li>
+                            <li>Trade recommendations</li>
+                            <li>Copy trading from other users</li>
+                        </ul>
+                        You develop your own strategies using the Brain's capture and extraction tools. You're responsible for what you trade and how you trade it.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Will TradingBrain make me profitable?</div>
+                    <div class="faq-answer">
+                        <strong>We make no guarantees about profitability.</strong> TradingBrain is a tool that helps you:
+                        <ul>
+                            <li>Capture and organize trading knowledge</li>
+                            <li>Extract rules from educational content</li>
+                            <li>Backtest strategies before risking real money</li>
+                            <li>Execute with discipline and compliance</li>
+                        </ul>
+                        Your results depend entirely on the strategies you develop, the quality of your education sources, and your ability to manage risk. The tool doesn't create profitable strategies - it helps you develop and execute your own.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How long does it take to learn the system?</div>
+                    <div class="faq-answer">
+                        Most users can complete basic setup and run their first capture session within an hour. The full workflow (capture → extract → backtest → execute) typically takes a few days to become comfortable with. We include documentation and guides to help you get started.
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <h2>Still Have Questions?</h2>
+                <p>We're here to help. Reach out and we'll get back to you as soon as possible.</p>
+                <a href="mailto:your@email.com" class="btn">Contact Support</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p><a href="index.html">← Back to Home</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2025 TradingBrain. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
