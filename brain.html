@@ -426,14 +426,38 @@
 
         <div class="cta">
             <p style="color: var(--text-muted); margin-bottom: 25px;">Ready to build your trading knowledge system?</p>
-            <a href="#" class="btn btn-primary">Buy Now - $497</a>
+            <button onclick="payNow('brain', 497)" class="btn btn-primary">Buy Now - $497</button>
             <a href="bundle.html" class="btn btn-secondary">Or Get the Bundle</a>
         </div>
 
+        <!-- NowPayments Integration -->
+        <script src="https://nowpayments.io/widget/widget.js"></script>
+        <script>
+            function payNow(product, amount) {
+                const apiKey = 'YOUR_NOWPAYMENTS_API_KEY';
+
+                if (apiKey === 'YOUR_NOWPAYMENTS_API_KEY') {
+                    alert('Payment system is being configured. Please contact support@tradingbrainz.com to complete your purchase.');
+                    return;
+                }
+
+                NWWidget.show({
+                    api_key: apiKey,
+                    invoice_id: Date.now().toString(),
+                    order_description: 'TradingBrainz Trading Brain',
+                    price_amount: amount,
+                    price_currency: 'usd',
+                    success_url: 'https://tradingbrainz.com/success.html',
+                    cancel_url: 'https://tradingbrainz.com/brain.html'
+                });
+            }
+        </script>
+
         <footer>
             <p><a href="index.html">← Back to Home</a></p>
-            <p style="margin-top: 15px;">Questions? <a href="mailto:your@email.com">Contact us</a></p>
+            <p style="margin-top: 15px;">Questions? <a href="mailto:support@tradingbrainz.com">Contact us</a></p>
         </footer>
     </div>
+    <script src="chatbot.js"></script>
 </body>
 </html>

@@ -402,14 +402,44 @@
 
         <div class="cta">
             <p style="color: var(--text-muted); margin-bottom: 25px;">Ready to automate your trading execution?</p>
-            <a href="#" class="btn btn-primary">Subscribe Now</a>
-            <a href="bundle.html" class="btn btn-secondary">Or Get the Bundle</a>
+            <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">Select your plan:</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;">
+                <button onclick="payNow('bots-1', 99)" class="btn btn-primary">1 Bot - $99/mo</button>
+                <button onclick="payNow('bots-2', 158)" class="btn btn-primary">2 Bots - $158/mo</button>
+                <button onclick="payNow('bots-3', 177)" class="btn btn-primary">3 Bots - $177/mo</button>
+            </div>
+            <a href="bundle.html" class="btn btn-secondary">Or Get the Bundle (Lifetime)</a>
         </div>
+
+        <!-- NowPayments Integration -->
+        <script src="https://nowpayments.io/widget/widget.js"></script>
+        <script>
+            function payNow(product, amount) {
+                // Replace YOUR_API_KEY with your actual NowPayments API key
+                const apiKey = 'YOUR_NOWPAYMENTS_API_KEY';
+
+                if (apiKey === 'YOUR_NOWPAYMENTS_API_KEY') {
+                    alert('Payment system is being configured. Please contact support@tradingbrainz.com to complete your purchase.');
+                    return;
+                }
+
+                NWWidget.show({
+                    api_key: apiKey,
+                    invoice_id: Date.now().toString(),
+                    order_description: 'TradingBrainz ' + product,
+                    price_amount: amount,
+                    price_currency: 'usd',
+                    success_url: 'https://tradingbrainz.com/success.html',
+                    cancel_url: 'https://tradingbrainz.com/bots.html'
+                });
+            }
+        </script>
 
         <footer>
             <p><a href="index.html">← Back to Home</a></p>
-            <p style="margin-top: 15px;">Questions? <a href="mailto:your@email.com">Contact us</a></p>
+            <p style="margin-top: 15px;">Questions? <a href="mailto:support@tradingbrainz.com">Contact us</a></p>
         </footer>
     </div>
+    <script src="chatbot.js"></script>
 </body>
 </html>
